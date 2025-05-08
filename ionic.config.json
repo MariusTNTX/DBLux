@@ -1,0 +1,7 @@
+{
+  "name": "DBLux",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

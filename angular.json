@@ -18,8 +18,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "baseHref": "/DBLux/",
             "outputPath": {
-              "base": "www",
+              "base": "docs",
               "browser": ""
             },
             "index": "src/index.html",

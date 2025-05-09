@@ -1,0 +1,9 @@
+<ion-content *ngIf="currentElement.content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>{{ currentElement.table?.tableName }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <app-list-viewer *ngIf="currentElement.isArray"></app-list-viewer>
+  <app-object-viewer *ngIf="!currentElement.isArray"></app-object-viewer>
+</ion-content>

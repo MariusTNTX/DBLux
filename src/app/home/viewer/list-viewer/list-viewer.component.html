@@ -1,0 +1,16 @@
+<ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let element of currentElement.content" size="12" size-md="6" size-xl="4">
+      <ion-item button detail="true">
+        <ion-label>
+          <!-- <h2>H2 Heading</h2>
+          <p>Paragraph</p> -->
+          <p *ngFor="let prop of getProps(element)">
+            <span class="key">{{ prop.key }}</span>:&nbsp;
+            <span class="value">{{ prop.value }}</span>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>

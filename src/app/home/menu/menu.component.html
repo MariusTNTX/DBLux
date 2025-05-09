@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ dbName }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot="end" shape="round" color="primary" (click)="addDataBase()">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list lines="full">
+    <ion-list-header>
+      <ion-toolbar>
+        <ion-label>Tablas</ion-label>
+        <ion-buttons slot="end">
+          <ion-button slot="end" shape="round" color="primary" (click)="addTable()">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-list-header>
+    <ion-item *ngFor="let table of tables; trackBy:trackItems" [button]="true" (click)="showTable(table, $event)">
+      <ion-label>{{ table.tableName }}</ion-label>
+      <ion-button slot="end" fill="clear" (click)="editTable(table, $event)">
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+      </ion-button>
+      <ion-button slot="end" fill="clear" (click)="deleteTable(table, $event)">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

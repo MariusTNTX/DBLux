@@ -1,39 +1,39 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
+  IonButton,
   IonButtons,
   IonContent,
   IonHeader,
   IonMenu,
   IonMenuButton,
   IonTitle,
-  IonToolbar, 
-  IonButton, 
-  IonIcon, 
-  IonPopover,
-  IonList,
-  IonItem
+  IonToolbar
 } from '@ionic/angular/standalone';
-import { MenuComponent } from "./menu/menu.component";
-import { ViewerComponent } from "./viewer/viewer.component";
-import { HomeService } from './home.service';
-import { addIcons } from 'ionicons';
-import { arrowBack, ellipsisHorizontal, ellipsisVertical } from 'ionicons/icons';
 import { CurrentElement } from './home.model';
+import { HomeService } from './home.service';
+import { MenuComponent } from "./menu/menu.component";
+import { SubHeaderComponent } from "./sub-header/sub-header.component";
+import { ViewerComponent } from "./viewer/viewer.component";
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [CommonModule, IonIcon, IonButton, IonPopover, IonList, IonItem, IonButtons, IonHeader, IonContent, IonToolbar, IonMenu, IonMenuButton, IonTitle, MenuComponent, ViewerComponent],
+  imports: [CommonModule, IonButton, IonButtons, IonHeader, IonContent, IonToolbar, IonMenu, IonMenuButton, IonTitle, MenuComponent, ViewerComponent, SubHeaderComponent],
 })
 export class HomePage {
   
   public currentElement!: CurrentElement | null;
+  public fixedOffsetTop: string = '0px !important';
+  public defaultOffsetTop: string = '112px';
   
   constructor(private readonly home: HomeService) {
-    addIcons({ arrowBack, ellipsisHorizontal, ellipsisVertical });
     this.home.currentElement.subscribe(res => this.currentElement = res);
+  }
+
+  get offsetTop(): string {
+    return !!this.currentElement ? this.fixedOffsetTop : this.defaultOffsetTop;
   }
 
   import(){

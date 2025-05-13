@@ -1,13 +1,27 @@
 <ion-grid>
   <ion-row>
-    <ion-col *ngFor="let element of currentElement.content" size="12" size-md="6" size-xl="4">
-      <ion-item button detail="true">
+    <ion-col *ngFor="let element of propertyElements" size="12" size-md="6" size-xl="4">
+      <ion-item button lines="none" detail="true">
         <ion-label>
-          <!-- <h2>H2 Heading</h2>
-          <p>Paragraph</p> -->
-          <p *ngFor="let prop of getProps(element)">
-            <span class="key">{{ prop.key }}</span>:&nbsp;
-            <span class="value">{{ prop.value }}</span>
+          <p *ngFor="let prop of element" [class.title]="prop.isHeader">
+            <span class="key">{{ prop.key }}:</span>
+            <span class="value">
+              <ng-container *ngIf="!prop.isArray && !prop.isObject">
+                {{ prop.value }}
+              </ng-container>
+              <ion-chip *ngIf="prop.isObject" 
+                [style.background]="prop.color" 
+                [style.color]="prop.contrast">
+                {{ prop.value }}
+              </ion-chip>
+              <span *ngIf="prop.isArray">
+                <ion-chip *ngFor="let value of prop.value" 
+                  [style.background]="prop.color" 
+                  [style.color]="prop.contrast">
+                  {{ value }}
+                </ion-chip>
+              </span>
+            </span>
           </p>
         </ion-label>
       </ion-item>

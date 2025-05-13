@@ -1,11 +1,4 @@
-<ion-content *ngIf="currentElement?.content">
-  <ion-header>
-    <ion-toolbar [style.--background]="currentElement?.table?.color">
-      <ion-title [style.color]="currentElement?.table?.contrast">
-        {{ currentElement?.table?.tableName }}
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ng-container *ngIf="currentElement?.content">
   <app-list-viewer *ngIf="currentElement?.isArray === true"></app-list-viewer>
   <app-object-viewer *ngIf="currentElement?.isArray === false"></app-object-viewer>
-</ion-content>
+</ng-container>

@@ -1,23 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { IonList, IonItem, IonLabel, IonGrid, IonRow, IonCol, IonChip, IonButton, IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonCardContent } from "@ionic/angular/standalone";
-import { CurrentElement, Table } from '../../home.model';
-import { HomeService } from '../../home.service';
 import { CommonModule } from '@angular/common';
-
-export interface Property { 
-  isHeader: boolean | undefined, 
-  isObject: boolean, 
-  isArray: boolean, 
-  color?: string,
-  contrast?: string,
-  key: string, 
-  value: any 
-}
-
-export interface Color { 
-  rgb: string, 
-  whiteContrast: boolean 
-}
+import { Component, OnInit } from '@angular/core';
+import { IonChip, IonCol, IonGrid, IonItem, IonLabel, IonRow } from "@ionic/angular/standalone";
+import { CurrentElement, Property } from '../../home.model';
+import { HomeService } from '../../home.service';
 
 @Component({
   selector: 'app-list-viewer',

@@ -26,3 +26,13 @@ export type CurrentElement = {
   isArray: boolean,
   table: Table | null,
 };
+
+export type Property = { 
+  isHeader: boolean | undefined, 
+  isObject: boolean, 
+  isArray: boolean, 
+  color?: string,
+  contrast?: string,
+  key: string, 
+  value: any 
+};

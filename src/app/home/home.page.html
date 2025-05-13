@@ -3,7 +3,7 @@
 </ion-menu>
 
 <div class="ion-page" id="main-content">
-  <ion-header [translucent]="true">
+  <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
@@ -16,9 +16,33 @@
         <ion-button (click)="export()">Exportar</ion-button>
       </ion-buttons>
     </ion-toolbar>
+    <ion-toolbar *ngIf="!!currentElement" [style.--background]="currentElement.table?.color">
+      <ion-buttons slot="primary">
+        <ion-button [style.color]="currentElement.table?.contrast">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+        <ion-button id="list-options-button" [style.color]="currentElement.table?.contrast">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+        </ion-button>
+        <ion-popover trigger="list-options-button" [dismissOnSelect]="true">
+          <ng-template>
+            <ion-content>
+              <ion-list>
+                <ion-item [button]="true" [detail]="false">Option 1</ion-item>
+                <ion-item [button]="true" [detail]="false">Option 2</ion-item>
+                <ion-item [button]="true" [detail]="false">Option 3</ion-item>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-buttons>
+      <ion-title [style.color]="currentElement.table?.contrast">
+        {{ currentElement.table?.tableName }}
+      </ion-title>
+    </ion-toolbar>
   </ion-header>
   
-  <ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true" [style.--offset-top]="!!currentElement ? '0px !important' : '112px'">
     <app-viewer></app-viewer>
   </ion-content>
 </div>

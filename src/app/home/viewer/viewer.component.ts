@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonTitle, IonToolbar, IonIcon } from "@ionic/angular/standalone";
+import { addIcons } from 'ionicons';
+import { arrowBack, ellipsisHorizontal, ellipsisVertical } from 'ionicons/icons';
 import { CurrentElement } from '../home.model';
 import { HomeService } from '../home.service';
 import { ListViewerComponent } from "./list-viewer/list-viewer.component";
@@ -10,13 +11,15 @@ import { ObjectViewerComponent } from "./object-viewer/object-viewer.component";
   selector: 'app-viewer',
   templateUrl: './viewer.component.html',
   styleUrls: ['./viewer.component.scss'],
-  imports: [IonToolbar, IonHeader, IonTitle, IonContent, CommonModule, ListViewerComponent, ObjectViewerComponent]
+  imports: [CommonModule, ListViewerComponent, ObjectViewerComponent]
 })
 export class ViewerComponent  implements OnInit {
 
   public currentElement!: CurrentElement | null;
 
-  constructor(private readonly home: HomeService) { }
+  constructor(private readonly home: HomeService) {
+    addIcons({ arrowBack, ellipsisHorizontal, ellipsisVertical });
+  }
 
   ngOnInit() {
     this.home.currentElement.subscribe(res => this.currentElement = res);

@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class HomeService {
 
   public allowedTypes: string[] = ['boolean', 'number', 'string'];
-  public DDBB!: DataBase;
+  public DDBB$: BehaviorSubject<DataBase | null> = new BehaviorSubject<DataBase | null>(null);
   public currentElement$: BehaviorSubject<CurrentElement | null> = new BehaviorSubject<CurrentElement | null>(null);
 
   constructor() { 
@@ -63,7 +63,7 @@ export class HomeService {
     song.columns[2].type = album;
     song.columns[3].type = band;
 
-    this.DDBB = {
+    /* this.DDBB = {
       name: 'MetaList',
       tables: [ band, album, song ],
       rows: {
@@ -71,8 +71,20 @@ export class HomeService {
         albums: [century_child, once, dark_passion_play],
         songs: [ever_dream, end_of_all_hope, phantom_of_the_opera, nemo, dark_chest_of_wonders, wish_i_had_an_angel, amaranth, bye_bye_beautiful, eva]
       }
-    };
-    console.log(this.DDBB);
+    }; */
+    console.log(this.DDBB$.value);
+  }
+
+  get DDBB(): Observable<DataBase | null> {
+    return this.DDBB$.asObservable();
+  }
+
+  getDDBB(): DataBase | null {
+    return this.DDBB$.value;
+  }
+
+  setDDBB(value: DataBase | null) {
+    this.DDBB$.next(value);
   }
 
   get currentElement(): Observable<CurrentElement | null> {
@@ -80,15 +92,15 @@ export class HomeService {
   }
 
   get dbName(): string {
-    return this.DDBB?.name;
+    return this.DDBB$.value?.name ?? '';
   }
 
   get tables(): Table[] {
-    return this.DDBB?.tables;
+    return this.DDBB$.value?.tables ?? [];
   }
 
   showTableRows(table: Table) {
-    const content = this.DDBB.rows[table.tableName.toLowerCase()];
+    const content = this.DDBB$.value?.rows?.[table.tableName.toLowerCase()] ?? null;
     const isArray = Array.isArray(content);
     this.currentElement$.next({ content, isArray, table });
   }

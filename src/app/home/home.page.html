@@ -11,7 +11,7 @@
       <ion-title>DBLux</ion-title>
       <ion-buttons slot="end">
         <ion-button (click)="import()">Importar</ion-button>
-        <ion-button (click)="export()">Exportar</ion-button>
+        <ion-button [disabled]="!hasDDBB" (click)="export()">Exportar</ion-button>
       </ion-buttons>
     </ion-toolbar>
     <app-sub-header></app-sub-header>

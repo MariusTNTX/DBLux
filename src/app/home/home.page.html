@@ -3,22 +3,21 @@
 </ion-menu>
 
 <div class="ion-page" id="main-content">
-  <ion-header [translucent]="true">
+  <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>
-        DBLux
-      </ion-title>
+      <ion-title>DBLux</ion-title>
       <ion-buttons slot="end">
         <ion-button (click)="import()">Importar</ion-button>
-        <ion-button (click)="export()">Exportar</ion-button>
+        <ion-button [disabled]="!hasDDBB" (click)="export()">Exportar</ion-button>
       </ion-buttons>
     </ion-toolbar>
+    <app-sub-header></app-sub-header>
   </ion-header>
   
-  <ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true" [style.--offset-top]="offsetTop">
     <app-viewer></app-viewer>
   </ion-content>
 </div>

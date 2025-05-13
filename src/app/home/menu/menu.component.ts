@@ -13,7 +13,7 @@ import { Table } from '../home.model';
   imports: [IonButtons, IonButton, IonIcon, CommonModule, IonList, IonListHeader, IonItem, IonLabel, IonHeader, IonToolbar, IonTitle, IonContent]
 })
 export class MenuComponent  implements OnInit {
-  public dbName!: string;
+  public dbName: string = 'Crear Base de Datos:';
   public tables!: Table[];
 
   constructor(private readonly home: HomeService) {
@@ -21,8 +21,12 @@ export class MenuComponent  implements OnInit {
   }
   
   ngOnInit() {
-    this.dbName = this.home.dbName ?? 'Menu';
-    this.tables = this.home.tables;
+    this.home.DDBB.subscribe(db => {
+      if(db){
+        this.dbName = db.name;
+        this.tables = db.tables;
+      }
+    })
   }
 
   trackItems(index: number, itemObject: Table) {

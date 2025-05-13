@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonTitle, IonToolbar } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import { add, addCircle, createOutline, trashOutline } from 'ionicons/icons';
+import { add, addCircle, createOutline, list, trashOutline } from 'ionicons/icons';
 import { HomeService } from '../home.service';
 import { Table } from '../home.model';
 
@@ -17,7 +17,7 @@ export class MenuComponent  implements OnInit {
   public tables!: Table[];
 
   constructor(private readonly home: HomeService) {
-    addIcons({ addCircle, add, createOutline, trashOutline });
+    addIcons({ addCircle, add, createOutline, list, trashOutline });
   }
   
   ngOnInit() {
@@ -35,7 +35,6 @@ export class MenuComponent  implements OnInit {
 
   showTable(table: Table, event: any){
     if(event.srcElement?.localName !== 'ion-button'){
-      console.log('showTable', table, event);
       this.home.showTableRows(table);
     }
   }

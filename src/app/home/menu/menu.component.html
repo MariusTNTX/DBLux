@@ -21,6 +21,7 @@
       </ion-toolbar>
     </ion-list-header>
     <ion-item *ngFor="let table of tables; trackBy:trackItems" [button]="true" (click)="showTable(table, $event)">
+      <ion-icon slot="start" name="list" size="small" [style.color]="table.color"></ion-icon>
       <ion-label>{{ table.tableName }}</ion-label>
       <ion-button slot="end" fill="clear" (click)="editTable(table, $event)">
         <ion-icon slot="icon-only" name="create-outline"></ion-icon>

@@ -8,12 +8,13 @@ export type Table = {
   tableName: string,
   elementName: string,
   color: string,
+  contrast: string,
   columns: Column[]
 };
 
 export type Column = {
   name: string,
-  type: string,
+  type: string | Table,
   required?: boolean,
   isObject?: boolean,
   isArray?: boolean,
